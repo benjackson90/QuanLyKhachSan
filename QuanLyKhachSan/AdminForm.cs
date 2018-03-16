@@ -15,5 +15,6 @@ namespace QuanLyKhachSan
         {
             InitializeComponent();
         }
+
     }
 }

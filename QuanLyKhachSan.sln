@@ -5,6 +5,18 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyKhachSan", "QuanLyKhachSan\QuanLyKhachSan.csproj", "{51F726FE-540B-4DD7-87F0-0CB54AB8885C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2", "..\..\..\Documents\PRN292\Homework\Lab2\Lab2\Lab2.csproj", "{864CF776-8F8E-467D-ADA1-197C1FBD9595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication13", "..\..\..\Documents\PRN292\WindowsFormsApplication13\WindowsFormsApplication13\WindowsFormsApplication13.csproj", "{3C2FF69E-67EC-44D6-83E3-1D0A4196F326}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingHW", "..\..\..\Documents\PRN292\Homework\ShoppingHW\ShoppingHW\ShoppingHW.csproj", "{94075BBC-FC94-4074-99AD-A62B961C402A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication11", "..\..\..\Documents\PRN292\DemoAccessDatabase\WindowsFormsApplication11\WindowsFormsApplication11\WindowsFormsApplication11.csproj", "{392237D0-F50C-46EC-BEB5-10DE9F873376}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication9", "..\..\..\Documents\PRN292\DemoDatagridview\WindowsFormsApplication9\WindowsFormsApplication9\WindowsFormsApplication9.csproj", "{A3CF16FA-45AF-4696-9D6C-B90943B71195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "connectDBSample", "..\..\..\Documents\PRN292\connectDBSample\connectDBSample\connectDBSample.csproj", "{40D7816C-E27A-4CE1-A02A-2D3B292C0E97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +27,30 @@ Global
 		{51F726FE-540B-4DD7-87F0-0CB54AB8885C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51F726FE-540B-4DD7-87F0-0CB54AB8885C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51F726FE-540B-4DD7-87F0-0CB54AB8885C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C2FF69E-67EC-44D6-83E3-1D0A4196F326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2FF69E-67EC-44D6-83E3-1D0A4196F326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2FF69E-67EC-44D6-83E3-1D0A4196F326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2FF69E-67EC-44D6-83E3-1D0A4196F326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94075BBC-FC94-4074-99AD-A62B961C402A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94075BBC-FC94-4074-99AD-A62B961C402A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94075BBC-FC94-4074-99AD-A62B961C402A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94075BBC-FC94-4074-99AD-A62B961C402A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{392237D0-F50C-46EC-BEB5-10DE9F873376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{392237D0-F50C-46EC-BEB5-10DE9F873376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{392237D0-F50C-46EC-BEB5-10DE9F873376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{392237D0-F50C-46EC-BEB5-10DE9F873376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3CF16FA-45AF-4696-9D6C-B90943B71195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3CF16FA-45AF-4696-9D6C-B90943B71195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3CF16FA-45AF-4696-9D6C-B90943B71195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3CF16FA-45AF-4696-9D6C-B90943B71195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D7816C-E27A-4CE1-A02A-2D3B292C0E97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D7816C-E27A-4CE1-A02A-2D3B292C0E97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D7816C-E27A-4CE1-A02A-2D3B292C0E97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D7816C-E27A-4CE1-A02A-2D3B292C0E97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
