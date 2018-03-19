@@ -28,17 +28,28 @@ namespace QuanLyKhachSan
 
         public static DataTable getAllRooms()
         {
-            string sql = "SELECT r.id, r.name, r.status"
-                           + ", rc.name as roomCategory"
-                           + ", bt.name as bedType FROM Room r"
-                           + "INNER JOIN RoomCategory rc on r.idRoomCategory = rc.id"
+            string sql = "SELECT r.id, r.name, r.status "
+                           + ", rc.name as roomCategory "
+                           + ", bt.name as bedType FROM Room r "
+                           + "INNER JOIN RoomCategory rc on r.idRoomCategory = rc.id "
                            + "INNER JOIN BedType bt on r.idBedType = bt.id";
             return getDataBySQL(sql);
         }
-       
-        public static DataTable getOrderByID(int OrderID)
+        public static DataTable getAllServices()
         {
-            string sql = "SELECT  * from Orders where OrderID = "+OrderID;
+            string sql = "SELECT * FROM Service";
+            return getDataBySQL(sql);
+        }
+
+        public static DataTable getListBillInfo(int tableId)
+        {
+            string sql = "SELECT bi.id," 
+                        + " s.name AS serviceName,"
+	                    + " s.price AS servicePrice,"
+	                    + " bi.count"
+                        + " FROM BillInfo bi"
+                        + " INNER JOIN Service s ON bi.idService = s.id"
+                        + " WHERE bi.idBill = (SELECT id FROM Bill WHERE idRoom = " + tableId +" AND status = 0)";
             return getDataBySQL(sql);
         }
         public static DataTable searchOrder(DateTime startDate, DateTime lastDate, string CustomerID, int EmployeeID)
@@ -100,12 +111,6 @@ and C.CategoryID = " + catID.ToString();
             int i = command.ExecuteNonQuery();
             command.Connection.Close();
             return i;
-        }
-        public static int getOrderIDjustInserted()
-        {
-            DataTable dt = DataAccess.getLastID();
-            object o = dt.Rows[0]["OrderID"];
-            return Convert.ToInt32(o);
         }
         public static int addOrderDetails(int OrderID, int ProductID, double UnitPrice, int Quantity, double Discount)
         {
