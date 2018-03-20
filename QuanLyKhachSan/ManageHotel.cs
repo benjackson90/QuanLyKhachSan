@@ -61,11 +61,11 @@ namespace QuanLyKhachSan
             AdminForm af = new AdminForm();
             af.ShowDialog();
         }
-        void showBillInfo(int tableId)
+        void showBillInfo(int roomId)
         {
             lvBillInfo.Items.Clear();
             double totalPrice = 0;
-            List<BillInfo> list = BillInfo.getBillInfo(tableId);
+            List<BillInfo> list = BillInfo.getBillInfo(roomId);
             foreach (BillInfo item in list)
             {
                 ListViewItem lvBillInfor = new ListViewItem(item.ServiceName);
@@ -79,8 +79,61 @@ namespace QuanLyKhachSan
         }
         void btn_Click (object sender, EventArgs e)
         {
-            int tableId = ((sender as Button).Tag as Room).RoomID;
-            showBillInfo(tableId);
+            int roomId = ((sender as Button).Tag as Room).RoomID;
+            lvBillInfo.Tag = (sender as Button).Tag;
+            showBillInfo(roomId);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Room rum = lvBillInfo.Tag as Room;
+            //Console.WriteLine(rum.RoomID);
+            //Console.WriteLine(rum.RoomName);
+            int billIsExisted = DataAccess.getCountBill(rum.RoomID);
+            int idService = Convert.ToInt32(cbService.SelectedValue);
+            int count = Convert.ToInt32(Amount.Value);
+            if (billIsExisted == 0)
+            {
+                Console.WriteLine(0);
+                int x = DataAccess.insertBill(rum.RoomID);
+                if (x == 1)
+                {
+                    Console.WriteLine(1);
+                    int maxId = DataAccess.getMaxIdBill();
+                    //Console.WriteLine(maxId);
+                    //Console.WriteLine(rum.RoomID);
+                    //Console.WriteLine(idService);
+                    //Console.WriteLine(count);
+                    int ok = DataAccess.insertBillInfo(maxId, idService, count);
+                    showBillInfo(rum.RoomID);
+                }
+            }
+            else if (billIsExisted == 1)
+            {
+                int idBill = DataAccess.getBillIdByRoomId(rum.RoomID);
+                int billInfoIsExisted = DataAccess.getBillInfoColumn("COUNT(*)", idBill, idService);
+                if ( billInfoIsExisted == 0 )
+                {
+                    Console.WriteLine(2);
+                    int insertSuccess = DataAccess.insertBillInfo(idBill, idService, count);
+                    if (insertSuccess == 1)
+                    {
+                        Console.WriteLine(3);
+                        showBillInfo(rum.RoomID);
+                    }
+                } else if (billInfoIsExisted == 1)
+                {
+                    int billInfoId = DataAccess.getBillInfoColumn("id", idBill, idService);
+                    int oldAmount = DataAccess.getCurrentAmount(billInfoId);
+                    int updateSuccess = DataAccess.updateBillInfo(billInfoId, oldAmount+count);
+                    Console.WriteLine(4);
+                    if (updateSuccess == 1)
+                    {
+                        Console.WriteLine(5);
+                        showBillInfo(rum.RoomID);
+                    }
+                }
+            }
         }
     }
 }

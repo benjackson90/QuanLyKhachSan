@@ -23,9 +23,9 @@ namespace QuanLyKhachSan.Provider
             this.Total = total;
         }
 
-        static public List<BillInfo> getBillInfo(int tableId)
+        static public List<BillInfo> getBillInfo(int billId)
         {
-            DataTable dt = DataAccess.getListBillInfo(tableId);
+            DataTable dt = DataAccess.getListBillInfo(billId);
             List<BillInfo> proList = new List<BillInfo>();
             foreach (DataRow dr in dt.Rows)
             {
