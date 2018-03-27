@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyKhachSan", "QuanLyKhachSan\QuanLyKhachSan.csproj", "{51F726FE-540B-4DD7-87F0-0CB54AB8885C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2", "F:\VS Projetc\Lab2\Lab2\Lab2.csproj", "{864CF776-8F8E-467D-ADA1-197C1FBD9595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab_2", "..\..\..\Documents\Visual Studio 2015\Projects\Lab_2\Lab_2\Lab_2.csproj", "{2A8CFF97-ABFC-4D94-9DFC-C4775CF319C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{51F726FE-540B-4DD7-87F0-0CB54AB8885C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51F726FE-540B-4DD7-87F0-0CB54AB8885C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51F726FE-540B-4DD7-87F0-0CB54AB8885C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{864CF776-8F8E-467D-ADA1-197C1FBD9595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8CFF97-ABFC-4D94-9DFC-C4775CF319C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8CFF97-ABFC-4D94-9DFC-C4775CF319C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8CFF97-ABFC-4D94-9DFC-C4775CF319C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8CFF97-ABFC-4D94-9DFC-C4775CF319C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
