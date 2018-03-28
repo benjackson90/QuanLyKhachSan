@@ -32,5 +32,6 @@ namespace QuanLyKhachSan
             AdminForm af = new AdminForm();
             af.ShowDialog();
         }
+
     }
 }

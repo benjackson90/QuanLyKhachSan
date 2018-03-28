@@ -16,5 +16,24 @@ namespace QuanLyKhachSan
             InitializeComponent();
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string fullname = txtFullName.Text;
+            string username = txtUsername.Text;
+            string pass = txtNewPass.Text;
+
+
+            Boolean check = DataAccess.UpdateAccount(fullname, username, pass);
+            if (check)
+            {
+                DialogResult dr = MessageBox.Show("Update Account is success!!!");
+                this.Close();
+                
+            }
+            else
+            {
+                DialogResult dr = MessageBox.Show("Update Account is fail!!!");
+            }
+        }
     }
 }
