@@ -36,5 +36,31 @@ namespace QuanLyKhachSan.Provider
                                 dr["bedType"].ToString()));
             return proList;
         }
+        static public List<Room> getAllRoomsEmpty()
+        {
+            DataTable dt = DataAccess.getAllRoomsEmpty();
+            List<Room> proList = new List<Room>();
+            foreach (DataRow dr in dt.Rows)
+                proList.Add(
+                    new Room(Convert.ToInt32(dr["id"]),
+                                dr["name"].ToString(),
+                                dr["status"].ToString(),
+                                dr["roomCategory"].ToString(),
+                                dr["bedType"].ToString()));
+            return proList;
+        }
+        static public List<Room> getAllRoomsOccupied()
+        {
+            DataTable dt = DataAccess.getAllRoomsOccupied();
+            List<Room> proList = new List<Room>();
+            foreach (DataRow dr in dt.Rows)
+                proList.Add(
+                    new Room(Convert.ToInt32(dr["id"]),
+                                dr["name"].ToString(),
+                                dr["status"].ToString(),
+                                dr["roomCategory"].ToString(),
+                                dr["bedType"].ToString()));
+            return proList;
+        }
     }
 }

@@ -18,23 +18,35 @@ namespace QuanLyKhachSan
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
-
-        private void formLogin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("Bạn có muốn thoát chương trình không?", "Thông báo", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show("Bạn có muốn thoát chương trình không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                e.Cancel = true;
+                Application.Exit();
             }
         }
 
+        public static string txtUser = "";
+        public static int type = 0;
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            ManageHotel mh = new ManageHotel();
-            this.Hide();
-            mh.ShowDialog();
-            this.Show();
+            string username = txtUsername.Text;
+            string password = txtPass.Text;
+            if (checkUser(username, password))
+            {
+                txtUser = username;
+                type = Convert.ToInt32 ( DataAccess.checkUsername(username, password).Rows[0][0] );
+                ManageHotel mh = new ManageHotel();
+                this.Hide();
+                mh.ShowDialog();
+            } else
+            {
+                MessageBox.Show("Username or password are incorrect.");
+            }       
+        }
+        private Boolean checkUser(string username, string password)
+        {
+            if (DataAccess.checkUsername(username, password).Rows.Count == 0)
+                return false;
+            return true;
         }
     }
 }

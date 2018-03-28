@@ -35,12 +35,48 @@ namespace QuanLyKhachSan
                            + "INNER JOIN BedType bt on r.idBedType = bt.id";
             return getDataBySQL(sql);
         }
+        public static DataTable getAllRoomsEmpty()
+        {
+            string sql = "SELECT r.id, r.name, r.status "
+                           + ", rc.name as roomCategory "
+                           + ", bt.name as bedType FROM Room r "
+                           + "INNER JOIN RoomCategory rc on r.idRoomCategory = rc.id "
+                           + "INNER JOIN BedType bt on r.idBedType = bt.id "
+                           + "WHERE r.status like 'Empty'";
+            return getDataBySQL(sql);
+        }
+        public static DataTable getAllRoomsOccupied()
+        {
+            string sql = "SELECT r.id, r.name, r.status "
+                           + ", rc.name as roomCategory "
+                           + ", bt.name as bedType FROM Room r "
+                           + "INNER JOIN RoomCategory rc on r.idRoomCategory = rc.id "
+                           + "INNER JOIN BedType bt on r.idBedType = bt.id "
+                           + "WHERE r.status like 'Occupied'";
+            return getDataBySQL(sql);
+        }
+        public static string getStatus(int id)
+        {
+            string sql = "SELECT status FROM Room WHERE id = " + id;
+            DataTable dt = DataAccess.getDataBySQL(sql);
+            object o = dt.Rows[0][0];
+            return Convert.ToString(o);
+        }
         public static DataTable getAllServices()
         {
             string sql = "SELECT * FROM Service";
             return getDataBySQL(sql);
         }
-
+        public static double getRoomPrice(int idRoom)
+        {
+            string sql = "select rc.price + bt.price "
+                          + "from Room r INNER JOIN RoomCategory rc on r.idRoomCategory = rc.id "
+                          + "INNER JOIN BedType bt on r.idBedType = bt.id "
+                          + "where r.id = " + idRoom;
+            DataTable dt = DataAccess.getDataBySQL(sql);
+            object o = dt.Rows[0][0];
+            return Convert.ToDouble(o);
+        }
         public static DataTable getListBillInfo(int roomId)
         {
             string sql = "SELECT bi.id," 
@@ -49,12 +85,12 @@ namespace QuanLyKhachSan
 	                    + " bi.count"
                         + " FROM BillInfo bi"
                         + " INNER JOIN Service s ON bi.idService = s.id"
-                        + " WHERE bi.idBill = (SELECT id FROM Bill WHERE idRoom = " + roomId +" AND status = 0)";
+                        + " WHERE bi.idBill = (SELECT id FROM Bill WHERE idRoom = " + roomId +" AND status = 0) AND bi.status = 0";
             return getDataBySQL(sql);
         }
         public static int getBillInfoColumn (String what, int idRoom, int idService)
         {
-            string sql = "select "+what+" from BillInfo where idBill = " +idRoom+ " and  idService = "+idService;
+            string sql = "select "+what+" from BillInfo where idBill = " +idRoom+ " and idService = "+idService+" and  status = 0";
             DataTable dt = DataAccess.getDataBySQL(sql);
             object o = dt.Rows[0][0];
             return Convert.ToInt32(o);
@@ -66,6 +102,13 @@ namespace QuanLyKhachSan
             object o = dt.Rows[0][0];
             return Convert.ToInt32(o);
         }
+        public static string getUsername(string username)
+        {
+            string sql = "select UserName from Account where UserName like '" + username + "'";
+            DataTable dt = DataAccess.getDataBySQL(sql);
+            object o = dt.Rows[0][0];
+            return Convert.ToString(o);
+        }
         public static int getBillIdByRoomId(int idRoom)
         {
             string sql = "SELECT id FROM Bill WHERE idRoom = " + idRoom;
@@ -73,6 +116,14 @@ namespace QuanLyKhachSan
             object o = dt.Rows[0][0];
             return Convert.ToInt32(o);
         }
+        public static int getBillIdByRoomIdAndStatus(int idRoom)
+        {
+            string sql = "SELECT id FROM Bill WHERE idRoom = " + idRoom + " AND status = 0";
+            DataTable dt = DataAccess.getDataBySQL(sql);
+            object o = dt.Rows[0][0];
+            return Convert.ToInt32(o);
+        }
+
         public static int getCountBill (int idRoom)
         {
             string sql = "select COUNT(*) from Bill where idRoom = " + idRoom + "AND status = 0";
@@ -87,18 +138,20 @@ namespace QuanLyKhachSan
             object o = dt.Rows[0][0];
             return Convert.ToInt32(o);
         }
+
         public static int insertBill(int idRoom)
         {
             string sql = @"INSERT INTO Bill VALUES ( "
                           + "GETDATE(), "  
                           + "NULL, "
                           + "@idRoom, "
+                          + "-1, "
                           + "0 "
                           + ")";
             SqlParameter param1 = new SqlParameter("@idRoom", SqlDbType.Int);
-            param1.Value = idRoom;  
+            param1.Value = idRoom;
             SqlCommand command = new SqlCommand(sql, getConnection());
-            command.Parameters.Add(param1);   
+            command.Parameters.Add(param1);
             command.Connection.Open();
             int i = command.ExecuteNonQuery();
             command.Connection.Close();
@@ -107,7 +160,7 @@ namespace QuanLyKhachSan
         public static int insertBillInfo(int idBill, int idService, int count)
         {
             string sql = @"INSERT INTO BillInfo
-                         VALUES (@idBill, @idService, @count)";
+                         VALUES (@idBill, @idService, @count, 0)";
             SqlParameter param1 = new SqlParameter("@idBill", SqlDbType.Int);
             param1.Value = idBill;
             SqlParameter param2 = new SqlParameter("@idService", SqlDbType.Int);
@@ -138,6 +191,53 @@ namespace QuanLyKhachSan
             int i = command.ExecuteNonQuery();
             command.Connection.Close();
             return i;
+        }
+        public static int updateRoomStatus(string status, int idRoom)
+        {
+            string sql = @"UPDATE Room SET status = '"+status+"'  WHERE id = @idRoom";
+            SqlParameter param1 = new SqlParameter("@idRoom", SqlDbType.Int);
+            param1.Value = idRoom;
+            SqlCommand command = new SqlCommand(sql, getConnection());
+            command.Parameters.Add(param1);
+            command.Connection.Open();
+            int i = command.ExecuteNonQuery();
+            command.Connection.Close();
+            return i;
+        }
+        // thanh toán
+        public static int updateStatusBillInfo(int idBill)
+        {
+            string sql = @"UPDATE BillInfo SET status = 1 WHERE idBill = @idBill";
+            SqlParameter param1 = new SqlParameter("@idBill", SqlDbType.Int);
+            param1.Value = idBill;
+            SqlCommand command = new SqlCommand(sql, getConnection());
+            command.Parameters.Add(param1);
+            command.Connection.Open();
+            int i = command.ExecuteNonQuery();
+            command.Connection.Close();
+            return i;
+        }
+        public static int updateStatusBill(int idBill, double total)
+        {
+            DateTime today = DateTime.Now;
+            string sql = @"UPDATE Bill SET checkOut = '"+ today+"', status = 1, total = @total WHERE id = @idBill";
+            SqlParameter param1 = new SqlParameter("@idBill", SqlDbType.Int);
+            param1.Value = idBill;
+            SqlParameter param2 = new SqlParameter("@total", SqlDbType.Int);
+            param2.Value = total;
+            SqlCommand command = new SqlCommand(sql, getConnection());
+            command.Parameters.Add(param1);
+            command.Parameters.Add(param2);
+            command.Connection.Open();
+            int i = command.ExecuteNonQuery();
+            command.Connection.Close();
+            return i;
+        }
+        public static DataTable checkUsername(string username, string password)
+        {
+            string sql = "SELECT type from Account where UserName = '"+username+"' AND Password = '"+password+"'";
+            DataTable dt = getDataBySQL(sql);
+            return dt;
         }
     }
 }

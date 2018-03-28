@@ -40,15 +40,23 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
+            this.addService = new System.Windows.Forms.Button();
             this.cbService = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.roomName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RoomPrice = new System.Windows.Forms.TextBox();
+            this.ServicePrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.btnPayment = new System.Windows.Forms.Button();
             this.btnBook = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.flpRoom = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbSearch = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbUsername = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Amount)).BeginInit();
@@ -88,6 +96,7 @@
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
             this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // adminToolStripMenuItem1
             // 
@@ -101,7 +110,7 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel2.Controls.Add(this.Amount);
             this.panel2.Controls.Add(this.lvBillInfo);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.addService);
             this.panel2.Controls.Add(this.cbService);
             this.panel2.Location = new System.Drawing.Point(356, 36);
             this.panel2.Name = "panel2";
@@ -136,7 +145,8 @@
             this.columnHeader5});
             this.lvBillInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvBillInfo.GridLines = true;
-            this.lvBillInfo.Location = new System.Drawing.Point(5, 73);
+            this.lvBillInfo.Location = new System.Drawing.Point(5, 72);
+            this.lvBillInfo.Margin = new System.Windows.Forms.Padding(5);
             this.lvBillInfo.Name = "lvBillInfo";
             this.lvBillInfo.Size = new System.Drawing.Size(407, 350);
             this.lvBillInfo.TabIndex = 4;
@@ -163,19 +173,20 @@
             this.columnHeader5.Text = "Total";
             this.columnHeader5.Width = 80;
             // 
-            // button1
+            // addService
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(319, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 53);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Thêm dịch vụ";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.addService.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addService.Location = new System.Drawing.Point(319, 14);
+            this.addService.Name = "addService";
+            this.addService.Size = new System.Drawing.Size(91, 53);
+            this.addService.TabIndex = 2;
+            this.addService.Text = "Thêm dịch vụ";
+            this.addService.UseVisualStyleBackColor = true;
+            this.addService.Click += new System.EventHandler(this.button1_Click);
             // 
             // cbService
             // 
+            this.cbService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbService.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbService.FormattingEnabled = true;
             this.cbService.Location = new System.Drawing.Point(13, 14);
@@ -186,6 +197,11 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel3.Controls.Add(this.roomName);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.RoomPrice);
+            this.panel3.Controls.Add(this.ServicePrice);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.txtPrice);
             this.panel3.Controls.Add(this.btnPayment);
@@ -195,11 +211,55 @@
             this.panel3.Size = new System.Drawing.Size(136, 428);
             this.panel3.TabIndex = 3;
             // 
+            // roomName
+            // 
+            this.roomName.AutoSize = true;
+            this.roomName.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomName.Location = new System.Drawing.Point(11, 24);
+            this.roomName.Name = "roomName";
+            this.roomName.Size = new System.Drawing.Size(98, 20);
+            this.roomName.TabIndex = 13;
+            this.roomName.Text = "Room: No";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 201);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Service Price";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 140);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Room Price";
+            // 
+            // RoomPrice
+            // 
+            this.RoomPrice.Enabled = false;
+            this.RoomPrice.Location = new System.Drawing.Point(11, 168);
+            this.RoomPrice.Name = "RoomPrice";
+            this.RoomPrice.Size = new System.Drawing.Size(100, 20);
+            this.RoomPrice.TabIndex = 10;
+            // 
+            // ServicePrice
+            // 
+            this.ServicePrice.Enabled = false;
+            this.ServicePrice.Location = new System.Drawing.Point(11, 228);
+            this.ServicePrice.Name = "ServicePrice";
+            this.ServicePrice.Size = new System.Drawing.Size(100, 20);
+            this.ServicePrice.TabIndex = 9;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 195);
+            this.label2.Location = new System.Drawing.Point(7, 262);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 8;
@@ -211,7 +271,7 @@
             this.txtPrice.Enabled = false;
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrice.ForeColor = System.Drawing.Color.Black;
-            this.txtPrice.Location = new System.Drawing.Point(11, 218);
+            this.txtPrice.Location = new System.Drawing.Point(11, 301);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(116, 29);
             this.txtPrice.TabIndex = 6;
@@ -225,16 +285,18 @@
             this.btnPayment.TabIndex = 2;
             this.btnPayment.Text = "Thanh toán";
             this.btnPayment.UseVisualStyleBackColor = true;
+            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
             // btnBook
             // 
             this.btnBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBook.Location = new System.Drawing.Point(11, 17);
+            this.btnBook.Location = new System.Drawing.Point(11, 73);
             this.btnBook.Name = "btnBook";
             this.btnBook.Size = new System.Drawing.Size(116, 49);
             this.btnBook.TabIndex = 0;
             this.btnBook.Text = "Chọn phòng";
             this.btnBook.UseVisualStyleBackColor = true;
+            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
             // fileSystemWatcher1
             // 
@@ -244,10 +306,41 @@
             // flpRoom
             // 
             this.flpRoom.AutoScroll = true;
-            this.flpRoom.Location = new System.Drawing.Point(12, 36);
+            this.flpRoom.Location = new System.Drawing.Point(12, 108);
             this.flpRoom.Name = "flpRoom";
-            this.flpRoom.Size = new System.Drawing.Size(327, 428);
+            this.flpRoom.Size = new System.Drawing.Size(327, 356);
             this.flpRoom.TabIndex = 4;
+            // 
+            // cbSearch
+            // 
+            this.cbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSearch.FormattingEnabled = true;
+            this.cbSearch.Location = new System.Drawing.Point(12, 80);
+            this.cbSearch.Name = "cbSearch";
+            this.cbSearch.Size = new System.Drawing.Size(326, 21);
+            this.cbSearch.TabIndex = 5;
+            this.cbSearch.SelectedIndexChanged += new System.EventHandler(this.cbSearch_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 25);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "User:";
+            // 
+            // lbUsername
+            // 
+            this.lbUsername.AutoSize = true;
+            this.lbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUsername.Location = new System.Drawing.Point(87, 50);
+            this.lbUsername.Name = "lbUsername";
+            this.lbUsername.Size = new System.Drawing.Size(0, 25);
+            this.lbUsername.TabIndex = 7;
             // 
             // ManageHotel
             // 
@@ -255,6 +348,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(937, 476);
+            this.ControlBox = false;
+            this.Controls.Add(this.lbUsername);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cbSearch);
             this.Controls.Add(this.flpRoom);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -263,6 +360,7 @@
             this.Name = "ManageHotel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ManageHotel";
+            this.Load += new System.EventHandler(this.ManageHotel_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -283,7 +381,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox cbService;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addService;
         private System.Windows.Forms.ListView lvBillInfo;
         private System.Windows.Forms.NumericUpDown Amount;
         private System.Windows.Forms.Button btnPayment;
@@ -297,5 +395,13 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox RoomPrice;
+        private System.Windows.Forms.TextBox ServicePrice;
+        private System.Windows.Forms.Label roomName;
+        private System.Windows.Forms.ComboBox cbSearch;
+        private System.Windows.Forms.Label lbUsername;
+        private System.Windows.Forms.Label label4;
     }
 }
